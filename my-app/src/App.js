@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import Greeting from './components/Greeting';
-import Calculator from './components/Calculator';
-import Counter from './components/Counter/index';
+
+import Counter from './components/Counter';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />        
         <Counter />
+        <NavBar />
       </header>
     </div>
   );
