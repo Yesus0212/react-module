@@ -24,11 +24,13 @@ function Counter(){
         }
     }, [counter]);
 
+    // Aquí hacemos el mismo renderizado condicional, pero fuera, para mantener limpio el JSX
+    const colorClass = counter % 2 === 0 ? "text-even" : "text-odd";
+
     return (
         <>
             <div>
-                {/* renderizado condicional */}
-                <p className={counter % 2 === 0 ? "text-even" : "text-odd"}>Counter: {counter}</p>
+                <p className={colorClass}>Counter: {counter}</p>
                 <button className="btn" onClick={() => setCounter(counter + 1)}>Add</button>
             </div>
             <div>
