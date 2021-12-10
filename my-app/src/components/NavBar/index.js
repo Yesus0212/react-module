@@ -26,7 +26,7 @@ export default function NavBar(){
             content = "Contenido del Item 3";
             break;
         default:
-            console.log("Opción invalida");
+            content = "Opción invalida";
             break;
     }
     
