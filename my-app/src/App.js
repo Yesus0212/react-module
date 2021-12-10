@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Counter from './components/Counter';
+// import Counter from './components/Counter';
 import NavBar from './components/NavBar';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />        
-        <Counter />
+        {/* <Counter /> */}
         <NavBar />
       </header>
     </div>

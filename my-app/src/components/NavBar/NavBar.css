@@ -1,3 +1,16 @@
-.select {
-    color: blue;
+lu{
+    list-style: none;
+}
+
+li{
+    list-style: none;
+}
+
+
+.selected {
+    color: rgb(49, 49, 151);
+}
+
+.noSelected {
+    color: black;
 }
