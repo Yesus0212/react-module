@@ -10,29 +10,25 @@ export default function NavBar(){
 
     const [active, setActive] = useState(0);
 
-    const handleClick = (itemID) => {    
-        setContent(itemID)    
+    const handleClick = (itemID) => {              
         setActive(itemID);
+        
     };
-   
-    function setContent(id){
-        console.log(id)
-        switch(id){
-            case 1:
-                content = "Contenido del Item 1";
-                break;
-            case 2:
-                content = "Contenido del Item 2";
-                break;
-            case 3:
-                content = "Contenido del Item 3";
-                break;
-            default:
-                console.log("Opción invalida");
-                break;
-        }
-    }
     
+    switch(active){
+        case 1:
+            content = "Contenido del Item 1";
+            break;
+        case 2:
+            content = "Contenido del Item 2";
+            break;
+        case 3:
+            content = "Contenido del Item 3";
+            break;
+        default:
+            console.log("Opción invalida");
+            break;
+    }
     
     const checkActive = (itemID) => (active === itemID ? "selected" : "");
 
