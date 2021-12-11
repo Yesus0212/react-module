@@ -40,46 +40,39 @@ const items = [
 
 // Generé dos variables, una donde va a contener el item que se va a filtrar para obtener el contenido y otra donde se almacenará dicho contenido, esto, porque al
 // querer leer directamente la propiedad en el JSX, React me mando un error, de que no permite el uso de objetos
-let itemSelected, content;
+let itemSelected, _content = "";
 
 export default function NavBar(){
 
     const [active, setActive] = useState(0);
 
     const handleClick = (itemID) => {
-        
-        const prueba = items.find(itemID);
+        itemSelected = items.find(({id}) => {
+            return id === itemID;
+        })
 
-        console.log(prueba);
-
-        itemSelected = items.filter(({id, content}) => {                 
-            return (id === 8 ? content : null);
-        });
-
-        content = (itemSelected.length !== 0 ? itemSelected[0].content : "Elemento invalido, con contenido");
-
-        console.log(itemSelected);
+        _content = (itemSelected.length !== 0 ? itemSelected.content : "Elemento invalido, sin contenido");
 
         setActive(itemID);        
     };
- 
-    
+     
     const checkActive = (itemID) => (active === itemID ? "selected" : "");
     
+    const _items = items.map((item) => ( 
+                        <li key={item.id} className={checkActive(item.id)} onClick={() => handleClick(item.id)}>
+                            {item.title}
+                        </li>
+                        ));
     
     return (
         <>
         <div>
             <ul>
-            {items.map((item) => (
-            <li key={item.id} className={checkActive(item.id)} onClick={() => handleClick(item.id)}>
-                {item.title}
-            </li>
-            ))}
+            {_items}
             </ul>
         </div>
         <div>
-            <h1>{content}</h1>
+            <h1>{_content}</h1>
         </div>        
         </>
     );
