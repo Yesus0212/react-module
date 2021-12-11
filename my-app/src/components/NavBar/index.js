@@ -4,43 +4,78 @@ import { useState } from "react";
 // Importamos los styles
 import "./NavBar.css";
 
-let content;
+// Se crea el arreglo de items
+const items = [
+    {
+        id: 1,
+        title: "Item1",
+        content: "Contenido del Item 1"
+    },
+    {
+        id: 2,
+        title: "Item2",
+        content: "Contenido del Item 2"
+    },
+    {
+        id: 3,
+        title: "Item3",
+        content: "Contenido del Item 3"
+    },
+    {
+        id: 4,
+        title: "Item4",
+        content: "Contenido del Item 4"
+    },
+    {
+        id: 5,
+        title: "Item5",
+        content: "Contenido del Item 5"
+    },
+    {
+        id: 6,
+        title: "Item6",
+        content: "Contenido del Item 6"
+    },
+]
+
+// Generé dos variables, una donde va a contener el item que se va a filtrar para obtener el contenido y otra donde se almacenará dicho contenido, esto, porque al
+// querer leer directamente la propiedad en el JSX, React me mando un error, de que no permite el uso de objetos
+let itemSelected, content;
 
 export default function NavBar(){
 
     const [active, setActive] = useState(0);
 
-    const handleClick = (itemID) => {              
-        setActive(itemID);
+    const handleClick = (itemID) => {
         
+        const prueba = items.find(itemID);
+
+        console.log(prueba);
+
+        itemSelected = items.filter(({id, content}) => {                 
+            return (id === 8 ? content : null);
+        });
+
+        content = (itemSelected.length !== 0 ? itemSelected[0].content : "Elemento invalido, con contenido");
+
+        console.log(itemSelected);
+
+        setActive(itemID);        
     };
-    
-    switch(active){
-        case 1:
-            content = "Contenido del Item 1";
-            break;
-        case 2:
-            content = "Contenido del Item 2";
-            break;
-        case 3:
-            content = "Contenido del Item 3";
-            break;
-        default:
-            content = "Opción invalida";
-            break;
-    }
+ 
     
     const checkActive = (itemID) => (active === itemID ? "selected" : "");
-
-    console.log(content);
+    
     
     return (
         <>
         <div>
             <ul>
-                <li className={checkActive(1)} onClick={() => handleClick(1)}>Item 1</li>
-                <li className={checkActive(2)} onClick={() => handleClick(2)}>Item 2</li>
-                <li className={checkActive(3)} onClick={() => handleClick(3)}>Item 3</li>
+            {items.map((item) => (
+            <li key={item.id} className={checkActive(item.id)} onClick={() => handleClick(item.id)}>
+                {item.title}
+            </li>
+            ))}
             </ul>
         </div>
         <div>
