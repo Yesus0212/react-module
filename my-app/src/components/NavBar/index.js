@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import ItemSelected from "../ItemSelected";
 
 // Importamos los styles
 import "./NavBar.css";
@@ -65,16 +66,10 @@ export default function NavBar(){
                         ));
     
     return (
-        <>
-        <div>
-            <ul>
-            {_items}
-            </ul>
-        </div>
-        <div>
-            <h1>{_content}</h1>
-        </div>        
-        </>
+       <ItemSelected 
+            item= {_items}
+            content = {_content}
+       />
     );
 
 };
