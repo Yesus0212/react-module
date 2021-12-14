@@ -1,0 +1,30 @@
+.characterCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem;
+    border-radius: 5px;
+}
+
+.imageCard {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+.characterInfo {
+    font-size: 10px;
+    padding: 0.75rem;
+    color: rgb(255, 255, 255);
+}
+
+a {
+    color: rgb(255, 255, 255);
+}
