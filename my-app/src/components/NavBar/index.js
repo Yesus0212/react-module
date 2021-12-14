@@ -5,39 +5,6 @@ import ItemSelected from "../ItemSelected";
 // Importamos los styles
 import "./NavBar.css";
 
-// Se crea el arreglo de items
-// const items = [
-//     {
-//         id: 1,
-//         title: "Item1",
-//         content: "Contenido del Item 1"
-//     },
-//     {
-//         id: 2,
-//         title: "Item2",
-//         content: "Contenido del Item 2"
-//     },
-//     {
-//         id: 3,
-//         title: "Item3",
-//         content: "Contenido del Item 3"
-//     },
-//     {
-//         id: 4,
-//         title: "Item4",
-//         content: "Contenido del Item 4"
-//     },
-//     {
-//         id: 5,
-//         title: "Item5",
-//         content: "Contenido del Item 5"
-//     },
-//     {
-//         id: 6,
-//         title: "Item6",
-//         content: "Contenido del Item 6"
-//     },
-// ]
 
 // Generé dos variables, una donde va a contener el item que se va a filtrar para obtener el contenido y otra donde se almacenará dicho contenido, esto, porque al
 // querer leer directamente la propiedad en el JSX, React me mando un error, de que no permite el uso de objetos
@@ -48,26 +15,28 @@ export default function NavBar(){
 
     const [items, setItems] = useState([]);
     const [active, setActive] = useState(0);
-   
-    
-    useEffect(() => {
-        async function fetchData() {
-            await fetch("./items.json").then(
-                function(res){
-                    return res.json()
-                }).then(function(items){
-                setItems(items)
-            }).catch(
-            function(err){
-              console.log(err, ' error')
-            });
-        };
+
+    // El archivo .json, debe estar en la carpeta publica, para poder obtener la información, de lo contrario, mandara error
+    const url = "items.json";
         
-        fetchData();          
+    useEffect(() => {        
+        // Función flecha anonima, es anonima, porque no tiene nombre que esta directamente ligada a la constante getItems
+        const getItems = async () => {
+            // Realizamos primero la llamada a la URL con fetch, no necesitamos colocar la acción, porque por default es GET
+            const response = await fetch(url);
+            // La primer llamada solo nos devuelve la información de la conexión, con el console.table, la podemos mostrar en consola
+            // console.table(response);            
+            // La segunda llamada la ocupamos para obtener la respuesta de la consulta, debe ser igualmente un llamado asincrono y utilizamos el método JSON
+            const data = await response.json();
+            // console.log(data);
+            // Aquí utilizamos la función del estado setItems, para cargar la información en la variable items
+            setItems(data);
+        };
+
+        // Aquí invocamos la función
+        getItems(); 
     },[])
 
-
-    console.log(items, "llenado");
     
     const handleClick = (itemID) => {
         itemSelected = items.find(({id}) => {
@@ -79,20 +48,12 @@ export default function NavBar(){
      
     const checkActive = (itemID) => (active === itemID ? "selected" : "");
     
-    const _items = (items) => {
-        console.log(items, "items");
-        if(items.length !== 0){
-            items.map((item) => ( 
-                                <li key={item.id} className={checkActive(item.id)} onClick={() => handleClick(item.id)}>
-                                    {item.title}
-                                </li>
-                                ));    
-        }
-        else{
-            <li>Error al cargar</li>
-        }
-    } 
-
+    const _items = items.map((item) => ( 
+        <li key={item.id} className={checkActive(item.id)} onClick={() => handleClick(item.id)}>
+            {item.title}
+        </li>
+        ));        
+    
     
     return (
        <ItemSelected 

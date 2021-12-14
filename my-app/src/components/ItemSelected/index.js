@@ -1,7 +1,6 @@
 import React from "react";
 
 function ItemSelected({item, content}) {
-
     return (
     <>
         <div>
