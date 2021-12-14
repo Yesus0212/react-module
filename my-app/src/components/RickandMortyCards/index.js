@@ -28,6 +28,7 @@ function RickandMortyCards() {
                     <a href={card.url}>
                         <h2>{card.name}</h2>
                     </a>
+                    <span className="status_icon"></span>
                     <span>
                         {card.species} {card.status}
                     </span>
