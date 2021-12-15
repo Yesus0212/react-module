@@ -4,8 +4,10 @@ import { useState } from "react";
 
 function App() {  
 
-	const [input1, setInput1] = useState("fdsafasfs");
-	const [input2, setInput2] = useState(0);
+	const [numCard, setNumCard] = useState(0);
+	const [name, setName] = useState("");
+	const [validDate, setValidDate] = useState(0);
+	const [cvc, setCvc] = useState(0);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -13,28 +15,48 @@ function App() {
 	};
 
 	return (
+		<>
 		<div className="container">
 			<form className="form" onSubmit={handleSubmit}>
-				<div className="flex">
-					<label htmlFor="input1">Input:</label>
+				<div className="flex">					
 					<input
-						id="input1"
-						onChange={(e) => setInput1(e.target.value)}
-						value={input1}
+						id="numCard"
+						onChange={(e) => setNumCard(e.target.value)}
+						value={numCard}
+					/>
+					<input						
+						id="name"
+						onChange={(e) => setName(e.target.value)}
+						value={name}
 					/>
 					<input
-						type={"number"}
-						id="input2"
-						onChange={(e) => setInput2(e.target.value)}
-						value={input2}
+						id="validDate"
+						onChange={(e) => setValidDate(e.target.value)}
+						value={validDate}
 					/>
-					<button type="submit" className="btn">
-						Enviar
-					</button>
+					<input
+						id="cvc"
+						onChange={(e) => setCvc(e.target.value)}
+						value={cvc}
+					/>
 				</div>
-			</form>
-			Cantidad: {input2}
+			</form>			
 		</div>
+		<div>
+			<div>
+				{numCard}
+			</div>
+			<div>
+				{name}
+			</div>
+			<div>
+				{validDate}
+			</div>
+			<div>
+				{cvc}
+			</div>
+		</div>		
+		</>
 	);
 }
 
