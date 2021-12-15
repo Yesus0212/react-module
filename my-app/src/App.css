@@ -88,3 +88,15 @@
 .button:disabled {
   background-color: #1e1ead; 
 }
+
+
+/* Estilos para mi formulario */
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}

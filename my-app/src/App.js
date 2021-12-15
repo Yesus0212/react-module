@@ -1,84 +1,39 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-// Components
-import Character from "./components/Character";
-
-// Services
-import { listCharacters } from "./services/characters";
 
 function App() {  
 
-	const [characters, setCharacters] = useState([]);
-	const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+	const [input1, setInput1] = useState("fdsafasfs");
+	const [input2, setInput2] = useState(0);
 
-	useEffect(() => {
-    const list = async () => {
-			const { results, info } = await listCharacters();
-			setCharacters(results);
-			setData(info);
-      setIsLoading(false);
-		};
-		list();
-	}, []);
-
-	const handleClick = async (action) => {
-    setIsLoading(true);
-
-    let page;
-		if (action === "next" && data.next != null) {
-			page = data.next.split("?")[1];
-		} 
-
-    if(action === "prev" && data.prev != null) {
-      page = data.prev.split("?")[1];
-    }
-
-    const { results, info } = await listCharacters(page);
-		setCharacters(results);
-		setData(info);
-    setIsLoading(false);
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(event);
 	};
 
-  const hasPrevLink = data.prev ? true : false;
-	const hasNextLink = data.next ? true : false;
-
 	return (
-		<div className="App">
-			<div className="fixed-container">
-        {
-        hasPrevLink ? (
-					<button
-						disabled={isLoading}
-						onClick={() => handleClick("prev")}
-						className="button"
-					>
-						Prev
+		<div className="container">
+			<form className="form" onSubmit={handleSubmit}>
+				<div className="flex">
+					<label htmlFor="input1">Input:</label>
+					<input
+						id="input1"
+						onChange={(e) => setInput1(e.target.value)}
+						value={input1}
+					/>
+					<input
+						type={"number"}
+						id="input2"
+						onChange={(e) => setInput2(e.target.value)}
+						value={input2}
+					/>
+					<button type="submit" className="btn">
+						Enviar
 					</button>
-				) : null
-        }
-				{
-        hasNextLink ? (
-					<button
-						disabled={isLoading}
-						onClick={() => handleClick("next")}
-						className="button"
-					>
-						Next
-					</button>
-				) : null
-        }
-			</div>
-			{characters.map(({ id, image, name, species, status }) => (
-				<Character
-					key={id}
-					image={image}
-					name={name}
-					species={species}
-					status={status}
-				/>
-			))}
+				</div>
+			</form>
+			Cantidad: {input2}
 		</div>
 	);
 }
