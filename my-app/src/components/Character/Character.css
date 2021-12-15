@@ -1,0 +1,52 @@
+.contentCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.characterCard{
+    width: 600px;
+    height: 220px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem;
+    border-radius: 5px;
+    background: rgb(60, 62, 68);
+    border-radius: 0.5rem;
+}
+
+.imageCard {    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+.characterInfo {
+    flex: 3 1 0%;
+    position: relative;
+    padding: 0.75rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.status_icon {
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.375rem;
+    background: rgb(158, 158, 158);
+    border-radius: 50%;
+}
