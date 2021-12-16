@@ -5,7 +5,7 @@ import React from "react";
 // CSS
 import "./Input.css";
 
-function Input({id, type, label, value, setValue}) {
+function Input({id, type = "text", label, value, setValue}) {
 
     return (
         <div className="input-container">
