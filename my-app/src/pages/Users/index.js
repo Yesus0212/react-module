@@ -3,32 +3,36 @@ import { useState, useEffect } from "react";
 
 import {getUsers} from "../../services/users";
 
+let final;
+
 function Users() {
 
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState({});
      
     useEffect(() => {			
-		const _users = async () => {
+		const getAll = async () => {
             const response = await getUsers();
-            const preData = Object.keys(response).map((key) => {
-                const { firstName, lastName } = response[key];
-                return {
-                    id: key,
-                    firstName,
-                    lastName,
-                };
-            });
-            setUsers(preData);
+            const data = Object.values(response);
+            _users(data)
         } 
-        _users();
+
+        const _users = (data) => {
+            final = data.map(({firstName, lastName}) => {
+                console.log(firstName)
+            });
+        }
+
+        getAll();
+        setUsers(final);
     }, [])
 
-   
+    
+    console.log(final)
        
 	return (
         <div>
             <ul>
-                {users}
+                Hola
             </ul>
         </div>        
     )

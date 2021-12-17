@@ -16,7 +16,7 @@ ReactDOM.render(
 			<Routes>
 				<Route path="/" element={<App />} />
 				<Route path="/users" element={<Users />} />
-        <Route path="/users/new" element={<UsersNew />} />
+        		<Route path="/users/new" element={<UsersNew />} />
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>,
