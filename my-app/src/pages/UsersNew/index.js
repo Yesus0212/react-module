@@ -5,7 +5,7 @@ import { useState } from "react";
 
 // Input
 import Input from "../../components/Input"
-import createUser from "../../services/users";
+import {createUser} from "../../services/users";
 
 function UsersNew() {
     const [firstName, setFirstName] = useState("");
