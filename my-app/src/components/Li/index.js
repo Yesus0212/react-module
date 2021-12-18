@@ -1,8 +1,13 @@
 import React from "react";
 
-function Li({ firstName, lastName }) {
+// RR
+import { useNavigate } from "react-router-dom";
+
+function Li({ id, firstName, lastName }) {
+	const navigate = useNavigate();
+
 	return (
-		<li>
+		<li onClick={(e) => navigate(`/users/${id}`)}>
 			{firstName} {lastName}
 		</li>
 	);

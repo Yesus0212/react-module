@@ -1,41 +1,24 @@
-import "./Users.css";
-import { useState, useEffect } from "react";
+import React from "react";
 
-import {getUsers} from "../../services/users";
+import { Link, Outlet } from "react-router-dom";
 
-// Components
-import Li from "../../components/Li";
-
-function Users() {
-
-    const [users, setUsers] = useState([]);
-
-	useEffect(() => {
-		const get = async () => {
-			const response = await getUsers();
-			const parsedResponse = Object.keys(response).map((key) => {
-				const { firstName, lastName } = response[key];
-				return {
-					id: key,
-					firstName,
-					lastName,
-				};
-			});
-			setUsers(parsedResponse);
-		};
-
-		get();
-	}, []);
-
+export default function Users() {
 	return (
-		<div>
-			<ul>
-				{users.map(({ id, firstName, lastName }) => (
-					<Li key={id} firstName={firstName} lastName={lastName} />
-				))}
-			</ul>
-		</div>
+		<>
+			<div className="content">
+				<h1>Users screen</h1>
+				<Outlet />
+			</div>
+			<div className="aside">
+				<nav className="side-nav">
+					<Link className="link" to="">
+						List users
+					</Link>
+					<Link className="link" to="new">
+						Create user
+					</Link>
+				</nav>
+			</div>
+		</>
 	);
 }
-
-export default Users;
