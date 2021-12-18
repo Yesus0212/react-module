@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 
 import {getUsers} from "../../services/users";
 
-let final;
-
 function Users() {
 
     const [users, setUsers] = useState({});
@@ -12,27 +10,34 @@ function Users() {
     useEffect(() => {			
 		const getAll = async () => {
             const response = await getUsers();
-            const data = Object.values(response);
-            _users(data)
+            const data = Object.entries(response);
+            renderUsers(data)
         } 
-
-        const _users = (data) => {
-            final = data.map(({firstName, lastName}) => {
-                console.log(firstName)
-            });
-        }
-
-        getAll();
-        setUsers(final);
+        
+        getAll();        
     }, [])
 
     
-    console.log(final)
+    const renderUsers = (data) => {
+        const _users = data.map(user => {
+            return (
+                <>
+                    <li key={user[0]}>
+                        {user[1].firstName} {user[1].lastName}
+                    </li>
+                </>  
+            )
+        }) 
+
+        setUsers(_users);
+    }
        
+    console.log(users)
+
 	return (
         <div>
             <ul>
-                Hola
+                {users}
             </ul>
         </div>        
     )
