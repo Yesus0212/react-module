@@ -37,7 +37,7 @@ const updateUser = async (id, data) => {
 };
 
 const deleteUser = async (id) => {
-    const response = await fetch(`${BASE_URL}users/${id}/`, {
+    const response = await fetch(`${BASE_URL}users/${id}.json`, {
         method: "DELETE",  		
     });
     return await response.json();
