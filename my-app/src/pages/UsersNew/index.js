@@ -1,36 +1,37 @@
-// Las pages son componentes state full (componentes complejos con lógica)
+import React, { useState } from "react";
 
+// CSS
 import "./UsersNew.css";
-import { useState } from "react";
 
 // Input
-import Input from "../../components/Input"
-import {createUser} from "../../services/users";
+import Input from "../../components/Input";
 
-function UsersNew() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [gender, setGender] = useState();
-    const [ocuppation, setOcuppation] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+// Services
+import { createUser } from "../../services/users";
 
+export default function UsersNew() {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [gender, setGender] = useState("");
+	const [occupation, setOccupation] = useState("");
+	const [birthdate, setBirthdate] = useState("");
 
-    const cleanForm = () => {
+	const cleanForm = () => {
 		setFirstName("");
 		setLastName("");
 		setGender("");
-		setOcuppation("");
+		setOccupation("");
 		setBirthdate("");
 	};
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
 			const data = {
 				firstName,
 				lastName,
 				gender,
-				ocuppation,
+				occupation,
 				birthdate,
 			};
 			await createUser(data);
@@ -38,51 +39,40 @@ function UsersNew() {
 		} catch (error) {
 			console.error(error.message);
 		}
-    }
+	};
 
 	return (
-    <div className="container flex-col">
-        <h1>Users New</h1>
-        <form onSubmit={handleSubmit}>
-            <Input 
-                id="fistName" 
-                type="text"
-                label="First Name" 
-                value={firstName} 
-                setValue={setFirstName} 
-            />
-            <Input 
-                id="lastName" 
-                type="text"
-                label="Last Name" 
-                value={lastName} 
-                setValue={setLastName} 
-            />
-            <Input
-                id="gender" 
-                type="text"
-                label="Gender" 
-                value={gender} 
-                setValue={setGender} 
-            />
-            <Input 
-                id="occupation" 
-                type="text"
-                label="Ocuppation" 
-                value={ocuppation} 
-                setValue={setOcuppation} 
-            />
-            <Input 
-                id="birthdate"
-                type="date"
-                label="Birthdate" 
-                value={birthdate} 
-                setValue={setBirthdate} 
-            />
-            <button type="submit">Crear</button>
-        </form>
-    </div>
-    )
+		<div className="">
+			<h1>Crea un usuario</h1>
+			<form onSubmit={handleSubmit}>
+				<Input
+					id="firstName"
+					label="First Name"
+					value={firstName}
+					setValue={setFirstName}
+				/>
+				<Input
+					id="lastName"
+					label="Last Name"
+					value={lastName}
+					setValue={setLastName}
+				/>
+				<Input id="gender" label="Gender" value={gender} setValue={setGender} />
+				<Input
+					id="occupation"
+					label="Occupation"
+					value={occupation}
+					setValue={setOccupation}
+				/>
+				<Input
+					id="birthdate"
+					type="date"
+					label="Birthdate"
+					value={birthdate}
+					setValue={setBirthdate}
+				/>
+				<button type="submit">Crear</button>
+			</form>
+		</div>
+	);
 }
-
-export default UsersNew;

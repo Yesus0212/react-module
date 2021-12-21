@@ -13,6 +13,7 @@ function App() {
 					Users
 				</Link>
 			</nav>
+			{/* En donde se ubique el Outlet, será donde se visualizan los elementos */}
 			<div className="main-content">
 				<Outlet />
 			</div>

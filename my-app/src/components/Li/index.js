@@ -1,15 +1,11 @@
 import React from "react";
 
-// RR
-import { useNavigate } from "react-router-dom";
-
-function Li({ id, firstName, lastName }) {
-	const navigate = useNavigate();
-
+function Li({ text, buttonText, callback }) {
 	return (
-		<li onClick={(e) => navigate(`/users/${id}`)}>
-			{firstName} {lastName}
-		</li>
+		<div>
+			{text}
+			<button onClick={callback}>{buttonText}</button>
+		</div>
 	);
 }
 

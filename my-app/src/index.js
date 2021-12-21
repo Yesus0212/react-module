@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import UsersNew from "./pages/UsersNew";
 import UsersList from "./pages/UsersList";
 import UsersDetail from "./pages/UsersDetail";
+import UsersUpdate from "./pages/UsersUpdate";
+import UsersDetailContainer from "./pages/UsersDetailContainer";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -18,11 +20,18 @@ ReactDOM.render(
 			<Routes>
 				<Route path="*" element={<h1>NOT FOUND!</h1>} />
 				<Route path="/" element={<App />}>
+					{/* El elemento marcado como index element, es el que se mostrará de primera instancia, cuando se ingresa a la sección */}
 					<Route index element={<Home />} />
 					<Route path="users" element={<Users />}>
+						{/* El elemento marcado como index element, es el que se mostrará de primera instancia, cuando se ingresa a la sección */}
 						<Route index element={<UsersList />} />
 						<Route path="new" element={<UsersNew />} />
-						<Route path=":userID" element={<UsersDetail />} />
+						{/* El :userID hace referencia al nombre del parametro que viaja en la URL, mismo que es tomado para los movimientos de actualización o eliminado */}
+						<Route path=":userID" element={<UsersDetailContainer />}>
+							{/* El elemento marcado como index element, es el que se mostrará de primera instancia, cuando se ingresa a la sección */}
+							<Route index element={<UsersDetail />} />
+							<Route path="update" element={<UsersUpdate />} />
+						</Route>
 					</Route>
 				</Route>
 			</Routes>
