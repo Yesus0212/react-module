@@ -6,7 +6,9 @@ import { getUser } from "../../services/users";
 
 // Icons
 import Test from "../../Icons/Test";
-import UsersConfirmDelete from "../UsersConfirmDelete";
+
+// Service
+import { deleteUser } from "../../services/users";
 
 export default function UserDetail() {
 	const [user, setUser] = useState({});
@@ -22,23 +24,21 @@ export default function UserDetail() {
 		get();
 	}, [params.userID]);
 
-
-	// const delUser = async (id) => {
-	// 	console.log(id);
-	// 	const response = await deleteUser(id);
-	// 	console.log(response);
-	// }
+	const handleDelete = async () => {
+		console.error("eliminado");
+		await deleteUser(params.userID);
+		navigate("/users");
+	};
 
 	return (
-		<div>
+		<div className="">
 			Hola soy el detalle del usuario: {user?.firstName} {user?.lastName}
 			<button onClick={() => navigate(`update`)}>
 				<Test />
 			</button>
-			{/* <button onClick={() => delUser(params.userID)}>
-				Delete
-			</button> */}
-			<UsersConfirmDelete />
+			<button className="btn" onClick={handleDelete}>
+				Eliminar
+			</button>
 			<br />
 			<Outlet />
 		</div>
