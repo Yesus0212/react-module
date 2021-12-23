@@ -44,7 +44,42 @@ class Dog extends Pet {
     bark() {
         return "guau";
     }
+
+    // Metodos get y set, para poder actualizar u obtener información de la clase
+    getOwnerFullName() {
+        // El simbolo ? nos sirve para que se valide si la propiedad existe o no
+        // en caso negativo, devuelve un undefined no un error 
+        return `${this.owner?.firstName} ${this.owner?.lastName}`;
+    }
+
+    // Para crear un metodo get y set, utilizamos la palabra reservada get o set
+    get ownerName() {
+        return this.getOwnerFullName();
+    }
+
+    set setOwnerName(owner) {
+        // Si el tipo del dato recibido no object, se generara un error y se termina el proceso
+        if(typeof owner !== "object") {
+            throw new Error("Invalid property");
+        }
+
+        // de lo contrario, se setea el valor recibido a la propiedad
+        this.owner = owner;
+    }
+    
 }
 
-
 // Al instanciar a la clase que esta herendando (clase hija), podemos utilizar todos los metodos de la clase de la que se esta herendando (clase padre)
+
+
+
+// Las funciones estaticas en javascript, solo pueden accederse desde la clase misma, sin necesidad de instanciarla
+// De hecho, si la instanciamos, no tendríamos acceso a los metodos y variables estaticas
+
+class Calculator {
+    static resultMessage = "El resultadop es:";
+
+    static sum(a, b) {
+        return `${this.resultMessage} ${a + b}`;
+    }
+}

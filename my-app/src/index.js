@@ -19,6 +19,7 @@ ReactDOM.render(
 		<BrowserRouter>
 			<Routes>
 				<Route path="*" element={<h1>NOT FOUND!</h1>} />
+				{/* Una ruta contenedero, crea un elemento contenedor donde se mostraran todas las rutas hijas */}
 				<Route path="/" element={<App />}>
 					{/* El elemento marcado como index element, es el que se mostrará de primera instancia, cuando se ingresa a la sección */}
 					<Route index element={<Home />} />

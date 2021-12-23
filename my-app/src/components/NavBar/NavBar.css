@@ -1,0 +1,7 @@
+ul{
+    list-style: none;
+}
+
+.selected {
+    color: rgb(12, 114, 161);
+}
